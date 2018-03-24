@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>instagram Biker Admin</title>
+    <script type="text/javascript" src="instagram.js"></script>
+      <script type="text/javascript">
+        var feed = new Instafeed({
+            get: 'tagged',
+            tagName: 'juno60',
+            clientId: 'YOUR_CLIENT_ID'
+          });
+          feed.run();
+      </script>
+    <style>
+    body {
+      font-family: "Lato", sans-serif;
+      background-color: white;
+      margin: 0;
+    }
+    </style>
+  </head>
+  <body>
+    <img src="BikerGang_Color.png" style="display:inline-block; position:fixed; height:150px; width:auto;">
+    <div id="menubar" style="background-color:white; border-bottom:black solid 1px; padding-bottom:1em; padding-top:1em; margin-left:14em; width:100%; display:inline-block; position:fixed;">
+      <div style="color:black; font-size:1em; font-weight:bold;">
+        <span style="margin-left:10em;"><a href="#" style="color:#846EF6; text-decoration:none;">About</a></span>
+        <span style="margin-left:5em;"><a href="#" style="color:#846EF6; text-decoration:none;">Artists</a></span>
+        <span style="margin-left:5em;"><a href="#" style="color:#846EF6; text-decoration:none;">Shows</a></span>
+        <span style="margin-left:5em;"><a href="#" style="color:#846EF6; text-decoration:none;">Apply</a></span>
+        <span style="margin-left:5em;"><a href="#" style="color:#846EF6; text-decoration:none;">News</a></span>
+        <span style="margin-left:5em;"><a href="#" style="color:#846EF6; text-decoration:none;">Contact Us</a></span>
+      </div>
+    </div>
+    <div style="width:65%; padding-top:10em; margin:auto; text-align:center;">
+      <div id="instafeed">
+      </div>
+    </div>
+  </body>
+</html>

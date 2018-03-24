@@ -1,0 +1,121 @@
+@media all {
+  body {
+    font-family: "Lato", sans-serif;
+    background-color: white;
+    margin: 0;
+  }
+  #artistname{
+    font-size:3em;
+    font-weight:bolder;
+  }
+  #artistimage{
+    display:block;
+    width:450px;
+    margin-bottom:1em;
+  }
+  #artistbio {
+    width:42%;
+    display:inline-block;
+    margin-top:3.5em;
+    vertical-align:top;
+  }
+  #upcomingdates{
+    font-size:3em;
+    font-style:italic;
+    font-weight:bold;
+    margin-top:1em;
+  }
+  .daterow{
+    display:block;
+    margin-top:0.5em;
+  }
+  .socialicon {
+    width:52px;
+    height:52px;
+  }
+  iframe {
+    width:450px;
+    height:120px;
+  }
+  /* #tourdaterow{
+    background-color: #323639;
+    width: 600px;
+    height: 25px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tourdate{
+    width: auto;
+    margin: auto;
+    font-weight: bold;
+    text-align: center;
+    color:white;
+  }
+  .tourcity{
+    margin: auto;
+    width: auto;
+    font-weight: bold;
+    color:white;
+  }
+  .tourvenue{
+    margin: auto;
+    width: auto;
+    font-weight: bold;
+    color:white;
+  }
+  .buytickets{
+    margin: auto;
+    width:auto;
+    background-color: white;
+    font-weight: bold;
+    color: #323639;
+    padding-left: .2em;
+    padding-right: .2em;
+  } */
+}
+@media (max-width:1300px){
+  #contentwrapper{
+    text-align: center;
+  }
+  #artistbio {
+    width:600px;
+    display:inline-block;
+    margin-top:3.5em;
+    vertical-align:top;
+  }
+}
+@media (max-width:700px){
+  #artistname{
+    font-size:2em;
+    font-weight:bolder;
+  }
+  #artistimage{
+    width: 362px;
+    margin: auto;
+    margin-bottom: 1em;
+  }
+  #artistbio {
+    width:362px;
+    display:inline-block;
+    margin-top:3.5em;
+    vertical-align:top;
+  }
+  #contentwrapper{
+    text-align: center;
+  }
+  #upcomingdates{
+    font-size:2em;
+  }
+  .socialicon {
+    width:40px;
+    height:40px;
+  }
+  iframe {
+    width:350px;
+    height:120px;
+    margin: auto;
+  }
+}

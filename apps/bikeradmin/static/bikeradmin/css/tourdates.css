@@ -1,0 +1,18 @@
+@media all {
+  #upcomingshows{
+    font-size:4em;
+    font-weight:bold;
+  }
+}
+@media (max-width:1300px){
+  #upcomingshows{
+    font-size:4em;
+    font-weight:bold;
+  }
+}
+@media (max-width:675px){
+  #upcomingshows{
+    font-size:3em;
+    font-weight:bold;
+  }
+}

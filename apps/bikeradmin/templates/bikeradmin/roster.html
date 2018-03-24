@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Arist Roster</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/bikertheme.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/roster.css' %}" media="screen" title="no title" charset="utf-8">
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'bikeradmin/javascript/bikertheme.js' %}"></script>
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-256.png' %}">
+  </head>
+  <body>
+    <div id="mobilebar">
+      <img id= "menuicon" src="{% static 'bikeradmin/images/icons/menu.png'%}">
+      <a href="/"><img id="bikerlogo" src="{% static 'bikeradmin/images/icons/BikerGang_Black.png' %}"></a>
+      <div id="filler"></div>
+    </div>
+    <div id="menubar">
+      <div>
+        <span class="menuspan"><a class="navlinks" href="/about" >About</a></span>
+        <span class="menuspan"><a class="navlinks" href="/roster">Artists</a></span>
+        <span class="menuspan"><a class="navlinks" href="/tourdates">Shows</a></span>
+        <span class="menuspan"><a class="navlinks" href="/HoF">Hall of Fame</a></span>
+        <span class="menuspan"><a class="navlinks" href="/apply">Apply</a></span>
+        <span class="menuspan"><a class="navlinks" href="/news">News</a></span>
+        <span class="menuspan"><a class="navlinks" href="/contact">Contact Us</a></span>
+      </div>
+    </div>
+    <div id="contentwrapper">
+      <div id="title">Artist Roster</div>
+      <div style="width:100%;">
+        <a href="/artist">
+          <div class="container">
+            <img src="{% static 'bikeradmin/images/demos/jbrekkie.jpg' %}" class="artistimage" >
+            <div class="artistname">Japanese Breakfast</div>
+          </div>
+        </a>
+        <div class="container">
+          <img src="{% static 'bikeradmin/images/demos/jbrekkie.jpg' %}" class="artistimage" >
+          <div class="artistname">Japanese Breakfast</div>
+        </div>
+        <div class="container">
+          <img src="{% static 'bikeradmin/images/demos/jbrekkie.jpg' %}" class="artistimage" >
+          <div class="artistname">Japanese Breakfast</div>
+        </div>
+        <div class="container">
+          <img src="{% static 'bikeradmin/images/demos/jbrekkie.jpg' %}" class="artistimage" >
+          <div class="artistname">Japanese Breakfast</div>
+        </div>
+
+      </div>
+    </div>
+    <div id="footer" style="width:100%; height:100px;"></div>
+  </body>
+</html>

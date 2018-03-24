@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Biker Gang Admin Login</title>
+    {% load static %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/login.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-256.png' %}">
+  </head>
+  <body>
+    {% for message in messages %}
+      <p>{{message.message}}</p>
+    {% endfor %}
+    <div class="tab">
+      <button class="tablinks" onclick="openEventName(event, 'Login')" id="defaultOpen">Login</button>
+      <button class="tablinks" onclick="openEventName(event, 'Register')">Register</button>
+    </div>
+    <div id="Login" class="tabcontent">
+      <form action="/login" method="POST">
+        <h2>Login</h2>
+        Username:<input type="text" name="username"><br>
+        Password:<input type="password" name="password"><br>
+        {% csrf_token %}
+        <button>Login</button>
+      </form>
+    </div>
+    <div id="Register" class="tabcontent">
+      <form action="/register" method="POST">
+          <h2>Register</h2>
+        Username:<input type="text" name="username"><br>
+        Password:<input type="password" name="password"><br>
+        Password Confirmation:<input type="password" name="confirm"><br>
+        Admin Token: <input type="password" name="admintoken"><br>
+        <button>Register</button>
+        {% csrf_token %}
+      </form>
+  </body>
+  <script type="text/javascript" src="{% static 'bikeradmin/javascript/login.js' %}"></script>
+</html>

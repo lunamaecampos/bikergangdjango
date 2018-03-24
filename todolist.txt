@@ -1,0 +1,8 @@
+Update/Edit for all Classes
+Correct postData['img']
+Integrate Amazon Bucket S3 Image upload
+Create Dashboard with views of all database entries
+Insert Python Parser for HTML templates
+Pagination
+Fix urls so they contain artist names
+debuggg
