@@ -7,26 +7,37 @@
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'bikeradmin/css/style.css' %}" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="{% static 'bikeradmin/css/dashboard.css' %}" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
     <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-256.png' %}">
   </head>
   <body>
-    <div id="welcomeHeader"> Welcome, {{request.session.theuser}}!
-      <a href="/logout">Logout Here</a>
+    <div style="max-width:100%;height:auto;padding:.5em;background-color:#2D2D2D">
+      <div id="welcomeHeader" style="display:flex; justify-content:space-between;">
+        <span style="color:white; font-size:1.25em; font-weight:bold;margin:0.25em;">Welcome, {{request.session.username}}!</span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em;"><a style="color:white;text-decoration:none;" href="/logout">Logout</a></span>
+      </div>
+      <h1 style="color:white; margin:0.25em; font-family: 'Molle', cursive; color:#E54D4D;">Bikergang Admin Dashboard</h1>
+      <div id="menulinks">
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/dashboard">Dashboard</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/artistmanager">Artist Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/tourmanager">Tour Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/newsmanager">News Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/hofmanager">HoF Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em;"><a style="color:white;text-decoration:none;" href="/appmanager">App Manager</a></span>
+      </div>
     </div>
-    <h1>Administrator Dashboard</h1>
-      {{artist}}
-
     {% for message in messages %}
           <p class="{{ message.tags }}">{{ message.message }}</p>
     {% endfor %}
 
-    <div class="tab">
+    <div class="tab" style="margin-top:1em;">
       <button class="tablinks" onclick="openEventName(event, 'tourdateform')" id="defaultOpen">Add Tourdates</button>
       <button class="tablinks" onclick="openEventName(event, 'artistform')">Add Artists</button>
       <button class="tablinks" onclick="openEventName(event, 'announcementform')">Add Announcements</button>
+      <button class="tablinks" onclick="openEventName(event, 'hofform')">Add Hall of Fame Photos</button>
     </div>
 
-    <form id="tourdateform" class="tabcontent" action="/addtourdate" method="POST">
+    <form id="tourdateform" class="tabcontent" action="/addtourdate" enctype="multipart/form-data" method="POST">
       {% csrf_token %}
 
       <h2>Select Band and Enter New Tour Dates Here:</h2>
@@ -38,11 +49,9 @@
         <div class="col-75">
           <select name="select_artist">
 					<option></option>
-            {%if artistname %}
-    					{% for artistname in artistnames %}
-    						<option> {{artistname}} {{artist.artistname}}</option>
+    					{% for a in artist %}
+    						<option value="{{a.id}}">{{a.artistname}}</option>
     					{% endfor %}
-            {% endif %}
 				  </select>
         </div>
       </div>
@@ -87,7 +96,7 @@
     </form>
 
 
-    <form id="artistform" class="tabcontent" action="/addartist" method="POST">
+    <form id="artistform" class="tabcontent" action="/addartist" enctype="multipart/form-data" method="POST">
       {% csrf_token %}
       <h2>Add New Artist to the Roster:</h2>
 
@@ -100,14 +109,6 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-25">
-          <label for="artisturlname"> Artist Url Name: </label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="artisturlname" name="artisturlname" placeholder="i.e. 'banes-world' please dont use punctuations or spaces etc">
-        </div>
-      </div>
 
       <div class="row">
         <div class="col-25">
@@ -200,32 +201,23 @@
         </div>
       </div>
 
-      <!-- <div class="row">
+      <div class="row">
         <div class="col-25">
           <label for="artistimg"> Profile Image Upload: </label>
         </div>
         <div class="col-75">
           <input type="file" id="artistimg" name="artistimg">
         </div>
-      </div> -->
+      </div>
 
       <button>Post</button>
     </form>
 
 
-    <form id="announcementform" class="tabcontent" action="/addnews" method="POST">
+    <form id="announcementform" class="tabcontent" action="/addnews" enctype="multipart/form-data" method="POST">
       {% csrf_token %}
 
       <h2>Post a News Announcement Here:</h2>
-
-      <div class="row">
-        <div class="col-25">
-          <label for="newsdatetime"> Date & Time: </label>
-        </div>
-        <div class="col-75">
-          <input type="datetime-local" id="newsdatetime" name="newsdatetime" placeholder="MM/DD/YYYY, HH:MM PM">
-        </div>
-      </div>
 
       <div class="row">
         <div class="col-25">
@@ -247,15 +239,6 @@
 
       <div class="row">
         <div class="col-25">
-          <label for="newsimg"> News Image: </label>
-        </div>
-        <div class="col-75">
-          <input type="file" id="newsimg" name="newsimg">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-25">
           <label for="newsimgcred"> Image Credit: </label>
         </div>
         <div class="col-75">
@@ -263,34 +246,51 @@
         </div>
       </div>
 
-      <button>Post</button>
+      <div class="row">
+        <div class="col-25">
+          <label for="newsimg"> News Image Upload: </label>
+        </div>
+        <div class="col-75">
+          <input type="file" id="newsimg" name="newsimg">
+        </div>
+      </div>
     </form>
+    <form id="hofform" class="tabcontent" action="/addimage" enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+
+      <h2>Post a Hall Of Fame Photo Here:</h2>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="caption"> Caption: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="caption" name="caption" placeholder="Bane's World at Stubb's BBQ">
+        </div>
+      </div>
 
 
-    <table>
-      <tr>
-        <th>Tour Date & Time</th>
-        <th>Tour City</th>
-        <th>Tour Venue</th>
-        <th>URL</th>
-        <th>Delete</th>
-      </tr>
-      {%if tourdateall %}
-        {%for t in tourdateall %}
-      <form action="/delete/{{t.id}}" method="POST">
-        {% csrf_token %}
-        <tr>
-          <td>{{t.tourdatetime}}</td>
-          <td>{{t.tourcity}}</td>
-          <td>{{t.tourvenue}}</td>
-          <td>{{t.tourinfourl}}</td>
-          <td><button>Delete</button></td>
-        </tr>
-      </form>
-        {% endfor %}
-      {% endif %}
-    </table>
+      <div class="row">
+        <div class="col-25">
+          <label for="cred"> Image Credit: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="cred" name="cred" placeholder="i.e.: 'Associated Press', 'Frank Mojica' ">
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-25">
+          <label for="image"> News Image Upload: </label>
+        </div>
+        <div class="col-75">
+          <input type="file" id="image" name="image">
+        </div>
+      </div>
+
+    <button>Post</button>
+  </form>
+  <div id="footer" style="width:100%; height:100px;"></div>
   </body>
   <script type="text/javascript" src="{% static 'bikeradmin/javascript/dashboard.js' %}"></script>
 </html>

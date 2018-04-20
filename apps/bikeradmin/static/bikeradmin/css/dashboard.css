@@ -1,4 +1,7 @@
 @media all {
+  body{
+    background-color: #F5F5F5;
+  }
   #apply{
     font-size: 4em;
     font-weight: bold;
@@ -41,6 +44,40 @@
     background-color: #74D2E7;
     text-align: center;
   }
+  #hofform{
+    margin: auto;
+    width:700px;
+    padding: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #ED9C66;
+    text-align: center;
+  }
+  #deleteform{
+    margin: auto;
+    width:700px;
+    padding: 20px;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+    background-color: #E06C75;
+    text-align: center;
+  }
+  #application{
+    background-color:white;
+    width:680px;
+    margin:auto;
+    margin-top:1em;
+  }
+  .selectform{
+    margin: auto;
+    margin-top: 1em;
+    width:680px;
+    padding: 20px;
+    border-radius: 2px;
+    background-color: white;
+    text-align: center;
+  }
+
   input[type=text], select, textarea{
     width: 100%;
     padding: 12px;
@@ -91,28 +128,54 @@
   }
   button {
     margin-top: 1em;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: .5em;
+    padding-bottom: .5em;
     font-size: 1em;
-    background-color: lightblue;
-    /* border: 1px solid #ccc; */
+    background-color: #2D2D2D;
+    border: none;
+    font-weight: bold;
     color: white;
-    width: 50%;
+    width: auto;
+  }
+  .socialicon {
+    width:44px;
+    height:44px;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin:auto;
+  }
+
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 4px;
+      text-align: center;
+  }
+
+  tr:nth-child(even) {
+      background-color: #dddddd;
   }
 }
 
 @media screen and (max-width: 700px) {
   #tourdateform{
     margin: auto;
-    width:280px;
+    width:90%;
   }
   #artistform{
     margin: auto;
-    width:280px;
+    width:90%;
   }
   #announcementform{
     margin: auto;
-    width:280px;
+    width:90%;
+  }
+  #hofform{
+    margin: auto;
+    width:90%;
   }
   .col-25, .col-75, button {
     width: 100%;
@@ -122,6 +185,15 @@
     font-size:1.75em;
   }
   div.tab {
-      width:280px;
+      width:90%;
+  }
+  .selectform{
+    width:90%;
+  }
+  #deleteform{
+    width:90%;
+  }
+  #application{
+    width: 90%;
   }
 }

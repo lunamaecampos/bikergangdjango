@@ -1,6 +1,8 @@
 @media all {
   body{
-    font-family: 'Molle', cursive;
+    font-family: Molle, cursive;
+    font-weight: 400;
+    font-style: italic;
     background-color: #F3E9CE;
     color:#E54D4D;
     font-size: 3em;

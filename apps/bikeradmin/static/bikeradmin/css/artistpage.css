@@ -37,15 +37,17 @@
     width:450px;
     height:120px;
   }
-  /* #tourdaterow{
+  #tourdaterow{
     background-color: #323639;
-    width: 600px;
     height: 25px;
     margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     display: flex;
     justify-content: space-between;
+    border-radius: 1px;
   }
   .tourdate{
     width: auto;
@@ -74,7 +76,7 @@
     color: #323639;
     padding-left: .2em;
     padding-right: .2em;
-  } */
+  }
 }
 @media (max-width:1300px){
   #contentwrapper{
@@ -117,5 +119,45 @@
     width:350px;
     height:120px;
     margin: auto;
+  }
+  #tourdaterow{
+    background-color: #323639;
+    width: 90%;
+    height: 100px;
+    margin: auto;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: inline-block;
+  }
+  .tourdate{
+    width: auto;
+    margin-top: 4px;
+    font-weight: bold;
+    text-align: center;
+    color:white;
+  }
+  .tourcity{
+    margin: auto;
+    margin-top: 4px;
+    width: auto;
+    font-weight: bold;
+    color:white;
+  }
+  .tourvenue{
+    margin: auto;
+    margin-top: 4px;
+    width: auto;
+    font-weight: bold;
+    color:white;
+  }
+  .buytickets{
+    margin-top: 4px;
+    margin-left: 2em;
+    margin-right: 2em;
+    background-color: white;
+    font-weight: bold;
+    color: #323639;
   }
 }

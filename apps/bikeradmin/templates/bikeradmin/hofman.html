@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard Biker Gang Admin</title>
+    {% load static %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/style.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/dashboard.css' %}" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-256.png' %}">
+  </head>
+  <body>
+    <div style="max-width:100%;height:auto;padding:.5em;background-color:#2D2D2D">
+      <div id="welcomeHeader" style="display:flex; justify-content:space-between;">
+        <span style="color:white; font-size:1.25em; font-weight:bold;margin:0.25em;">Welcome, {{request.session.username}}!</span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em;"><a style="color:white;text-decoration:none;" href="/logout">Logout</a></span>
+      </div>
+      <h1 style="color:white; margin:0.25em; font-family: 'Molle', cursive; color:#E54D4D;">Bikergang Admin Dashboard</h1>
+      <div id="menulinks">
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/dashboard">Dashboard</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/artistmanager">Artist Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/tourmanager">Tour Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/newsmanager">News Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/hofmanager">HoF Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em;"><a style="color:white;text-decoration:none;" href="/appmanager">App Manager</a></span>
+      </div>
+    </div>
+    {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message.message }}</p>
+    {% endfor %}
+    <div style="background-color:white; margin:1em; text-align:center;">
+    <h1 style="margin:1em; ">Select a Photo to Delete from Hall of Fame</h1>
+    {% for i in image %}
+      <form id="hofelectform" style="display:inline-block; width:200px;" class="selectform" action="deleteimage/{{i.id}}" method="POST" onsubmit="return confirm('Do you really want to delete this Photo?');">
+        {% csrf_token %}
+        <input id="image" type="image" width="180" height="auto" alt="hofphoto" src="{{i.image.url}}">
+      </form>
+    {% endfor %}
+    </div>
+  </body>
+  <script type="text/javascript" src="{% static 'bikeradmin/javascript/newsman.js' %}"></script>
+</html>

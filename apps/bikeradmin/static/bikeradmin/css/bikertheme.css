@@ -20,12 +20,14 @@
     display:inline-block;
     position:fixed;
   }
+
   #contentwrapper{
     width:840px;
     padding-top:10em;
     padding-left: 282px;
     margin:auto;
     opacity: 0;
+    /* background-color: red; */
   }
   #bikerlogo{
     display:inline-block;
@@ -36,11 +38,22 @@
   }
   .navlinks {
     color:#E54D4D;
-    font-family: 'Molle', cursive;
+    font-family: Molle, cursive;
+    font-weight: 400;
+    font-style: italic;
     font-size: 1.75em;
   }
   .menuspan {
     margin-left: 2em;
+  }
+  .scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+  .descthumb{
+    height:144px;
+    display:inline-block
   }
 }
   @media (max-width:1300px){

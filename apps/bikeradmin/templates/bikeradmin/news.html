@@ -40,49 +40,35 @@
         <span>!!</span> -->
         <span style="font-style:italic;">Extra, Extra! Read All About It!</span>
       </div>
+      {% for n in news %}
       <div class="newsStory">
-        <div class="newsHeadline">Japanese Breakfast Had a Great 2017!</div>
-        <div class="newsDate">January 1st, 2018.</div>
+        <div class="newsHeadline">{{n.newsheadline}}</div>
+        <div class="newsDate">Posted on {{n.newsdatetime}}
+        </div>
         <div class="newsContent">
           <div>
-            Michelle Zuaner is the mastermind of Japanese Breakfast.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in mi lorem. Fusce tristique ipsum eget bibendum vulputate. Sed et quam accumsan, tempor odio quis, scelerisque tellus. Vestibulum eu enim quis neque tristique finibus in eu ante. Aliquam imperdiet lacinia magna, eget vehicula mauris. Integer non nibh pretium, mollis mauris ac, convallis enim. Pellentesque varius malesuada mi vel efficitur. Proin nisl diam, placerat nec eros eu, eleifend finibus mi. Etiam at risus sed risus tincidunt aliquam eu eu dolor. Vivamus rutrum blandit porta. Phasellus vitae sem suscipit magna eleifend hendrerit. Nulla id laoreet est. Donec sagittis tempor justo eu tempor. Aliquam pulvinar quis mi id consequat.
-            Sed a enim ligula. Vivamus pellentesque faucibus sollicitudin.
+            {{n.newsstory}}
           </div>
         </div>
         <div class="imageDiv">
-          <img src="{% static 'bikeradmin/images/demos/jbrekkie.jpg' %}" class="newsImage">
-          <div style="font-style:italic; text-align:center;">Japanese Breakfast Image Courtesy AP </div>
-      </div>
-    </div>
-    <div class="newsStory">
-      <div class="newsHeadline">Japanese Breakfast Had a Great 2017!</div>
-      <div class="newsDate">January 1st, 2018.</div>
-      <div class="newsContent">
-        <div>
-          Michelle Zuaner is the mastermind of Japanese Breakfast.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in mi lorem. Fusce tristique ipsum eget bibendum vulputate. Sed et quam accumsan, tempor odio quis, scelerisque tellus. Vestibulum eu enim quis neque tristique finibus in eu ante. Aliquam imperdiet lacinia magna, eget vehicula mauris. Integer non nibh pretium, mollis mauris ac, convallis enim. Pellentesque varius malesuada mi vel efficitur. Proin nisl diam, placerat nec eros eu, eleifend finibus mi. Etiam at risus sed risus tincidunt aliquam eu eu dolor. Vivamus rutrum blandit porta. Phasellus vitae sem suscipit magna eleifend hendrerit. Nulla id laoreet est. Donec sagittis tempor justo eu tempor. Aliquam pulvinar quis mi id consequat.
-          Sed a enim ligula. Vivamus pellentesque faucibus sollicitudin.
+          <img src="{{n.newsimg.url}}" class="newsImage">
+          <div style="font-style:italic; text-align:center;">Image Courtesy of {{n.newsimgcred}}</div>
         </div>
-      </div>
-      <div class="imageDiv">
-        <img src="{% static 'bikeradmin/images/demos/jbrekkie.jpg' %}" class="newsImage">
-        <div style="font-style:italic; text-align:center;">Japanese Breakfast Image Courtesy AP </div>
-      </div>
     </div>
-    <div class="newsStory">
-      <div class="newsHeadline">Japanese Breakfast Had a Great 2017!</div>
-      <div class="newsDate">January 1st, 2018.</div>
-      <div class="newsContent">
-        <div>
-          Michelle Zuaner is the mastermind of Japanese Breakfast.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in mi lorem. Fusce tristique ipsum eget bibendum vulputate. Sed et quam accumsan, tempor odio quis, scelerisque tellus. Vestibulum eu enim quis neque tristique finibus in eu ante. Aliquam imperdiet lacinia magna, eget vehicula mauris. Integer non nibh pretium, mollis mauris ac, convallis enim. Pellentesque varius malesuada mi vel efficitur. Proin nisl diam, placerat nec eros eu, eleifend finibus mi. Etiam at risus sed risus tincidunt aliquam eu eu dolor. Vivamus rutrum blandit porta. Phasellus vitae sem suscipit magna eleifend hendrerit. Nulla id laoreet est. Donec sagittis tempor justo eu tempor. Aliquam pulvinar quis mi id consequat.
-          Sed a enim ligula. Vivamus pellentesque faucibus sollicitudin.
-        </div>
-      </div>
-      <div class="imageDiv">
-        <img src="{% static 'bikeradmin/images/demos/jbrekkie.jpg' %}" class="newsImage">
-        <div style="font-style:italic; text-align:center;">Japanese Breakfast Image Courtesy AP </div>
-      </div>
+      {% endfor %}
+    <div class="pagination" style="text-align:center; margin-top:1em;">
+      <span class="step-links">
+        {% if news.has_previous %}
+            <a href="?page={{ news.previous_page_number }}">Prev</a>
+        {% endif %}
+        <span class="current">
+            Page {{ news.number }} of {{ news.paginator.num_pages }}.
+        </span>
+        {% if news.has_next %}
+            <a href="?page={{ news.next_page_number }}">Next</a>
+        {% endif %}
+      </span>
     </div>
-    <div style="text-align:center; margin-top:1em;"> Next | Prev </div>
     <div id="footer" style="width:100%; height:100px;"></div>
   </div>
   </body>

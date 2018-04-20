@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard Biker Gang Admin</title>
+    {% load static %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/style.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/dashboard.css' %}" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-256.png' %}">
+  </head>
+  <body>
+    <div style="max-width:100%;height:auto;padding:.5em;background-color:#2D2D2D">
+      <div id="welcomeHeader" style="display:flex; justify-content:space-between;">
+        <span style="color:white; font-size:1.25em; font-weight:bold;margin:0.25em;">Welcome, {{request.session.username}}!</span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em;"><a style="color:white;text-decoration:none;" href="/logout">Logout</a></span>
+      </div>
+      <h1 style="color:white; margin:0.25em; font-family: 'Molle', cursive; color:#E54D4D;">Bikergang Admin Dashboard</h1>
+      <div id="menulinks">
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/dashboard">Dashboard</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/artistmanager">Artist Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/tourmanager">Tour Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/newsmanager">News Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/hofmanager">HoF Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em;"><a style="color:white;text-decoration:none;" href="/appmanager">App Manager</a></span>
+      </div>
+    </div>
+    {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message.message }}</p>
+    {% endfor %}
+
+    <form id="tourselectform" class="selectform" action="" method="POST">
+      {% csrf_token %}
+      <h2>Select Artist:</h2>
+      <select id="artist">
+      <option></option>
+      {% for a in artist %}
+      <option value="{{a.id}}" name="artistid">{{a.artistname}}</option>
+      {% endfor %}
+      </select>
+      <button type="submit" value="submit">Select</button>
+    </form>
+
+    <table id="tourdatetable">
+      <tr>
+        <th>Artist</th>
+        <th>Date</th>
+        <th>Venue</th>
+        <th>City, State</th>
+        <th>Tix</th>
+        <th>Delete</th>
+      </tr>
+      {% for t in tourdate %}
+      <tr>
+        <td>{{t.artist.artistname}}</td>
+        <td>{{t.tourdatetime}}</td>
+        <td>{{t.tourvenue}}</td>
+        <td>{{t.tourcity}}</td>
+        <td><a href="{{t.tourinfourl}}">Tix</a></td>
+        <td><form action="/deletetourdate/{{t.id}}"><button style="font-size:.75em;">Delete</button></form></td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <div class="pagination" style="text-align:center; margin-top:1em;">
+      <span class="step-links">
+        {% if tourdate.has_previous %}
+            <a href="?page={{ tourdate.previous_page_number }}">Prev</a>
+        {% endif %}
+        <span class="current">
+            Page {{tourdate.number }} of {{ tourdate.paginator.num_pages }}.
+        </span>
+        {% if tourdate.has_next %}
+            <a href="?page={{ tourdate.next_page_number }}">Next</a>
+        {% endif %}
+      </span>
+    </div>
+    <div id="footer" style="width:100%; height:100px;"></div>
+  </body>
+  <script type="text/javascript" src="{% static 'bikeradmin/javascript/tourman.js' %}"></script>
+</html>
