@@ -13,8 +13,9 @@ def logpage (request):
     return render(request, 'bikeradmin/login.html')
 
 def roster (request):
-    artist = ArtistProfile.objects.all()
-    return render(request, 'bikeradmin/roster.html', {'artist':artist})
+    trueartist = ArtistProfile.objects.filter(currentArtist=True)
+    falseartist = ArtistProfile.objects.filter(currentArtist=False)
+    return render(request, 'bikeradmin/roster.html', {'trueartist':trueartist, 'falseartist':falseartist})
 
 def tourdates (request):
     artist = ArtistProfile.objects.all()
@@ -50,7 +51,7 @@ def news (request):
     return render(request, 'bikeradmin/news.html', {'news': news})
 
 def halloffame (request):
-    hofphoto = FeaturedImage.objects.all()
+    hofphoto = FeaturedImage.objects.order_by('created_at')
     return render(request, 'bikeradmin/halloffame.html', {'hofphoto':hofphoto})
 
 def contact (request):
@@ -198,6 +199,7 @@ def register (request):
             messages.error(request, error)
         return redirect('/logpage')
     if 'theuser' in user:
+	request.session['username'] = user['username']
         request.session['theuser'] = user['theuser']
         request.session['userid'] = user['userid']
         return redirect('/dashboard')

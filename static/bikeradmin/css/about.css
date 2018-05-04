@@ -1,0 +1,16 @@
+@media all {
+  .socialicon{
+    width:48px;
+    margin-top: 1em;
+  }
+  #title{
+    font-size:4em;
+    font-weight:bold;
+    margin-bottom:1em;
+  }
+}
+@media (max-width:500px) {
+  #title{
+    font-size:3em;
+  }
+}

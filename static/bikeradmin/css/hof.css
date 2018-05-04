@@ -1,0 +1,134 @@
+.hoftitle{
+  font-size:4em;
+  font-weight:bold;
+}
+/* The Modal (background) */
+.modal {
+  /* display: none;
+  position: fixed; */
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* background: rgba(0,0,0,0.8); */
+}
+
+/* Modal Content */
+.modal .modal-content {
+  /* position: relative; */
+  margin: auto;
+  padding: 0;
+  background: rgba(0,0,0,0);
+}
+
+/* The Close Button */
+.modal .close {
+  color: white;
+  /* position: absolute; */
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.modal .close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal .mySlides {
+  display: none;
+}
+
+.modal .cursor {
+  cursor: pointer
+}
+
+/* Next & previous buttons */
+/* .modal .prev,
+.modal .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+  background-color: rgba(0, 0, 0, 0.6);
+} */
+
+/* Position the "next button" to the right */
+.modal .prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+.modal .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.modal .prev:hover,
+.modal .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.modal .numbertext {
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 8px 12px;
+  /* position: absolute; */
+  top: -3em;
+  background: rgba(0,0,0,0.8);
+}
+
+.modal img {
+  margin-bottom: -4px;
+  max-width: 100%;
+}
+
+.modal .caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+}
+
+.modal .demo {
+  opacity: 0.6;
+}
+
+.modal .active,
+.modal .demo:hover {
+  opacity: 1;
+}
+
+.modal img.hover-shadow {
+  transition: 0.3s
+}
+
+.modal .hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+@media (max-width:800px){
+  .modal img {
+    height: auto;
+    width: 100%;
+  }
+  .hoftitle{
+    font-size: 3em;
+  }
+}

@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 't^)q6_1rg6+ag&tr8s8vo0&_j%ra&+@7^n@w8l)6kavrmm2+bb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['54.214.153.120', 'bikergangbooking.com', 'www.bikergangbooking.com']
 
 
 # Application definition
@@ -125,9 +125,9 @@ STATIC_URL = '/static/'
 ############# Amazon s3 storage #########################
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'bikeradmin/static'),
-]
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'static'),
+#]
 
 AWS_ACCESS_KEY_ID = 'AKIAJIDPV5PM5V5H2XKA'
 AWS_SECRET_ACCESS_KEY = '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'
@@ -138,8 +138,9 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-AWS_LOCATION = 'static'
+# AWS_LOCATION = 'static'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 DEFAULT_FILE_STORAGE = 'bikergang.storage_backends.MediaStorage'  # <-- here is where we reference it
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
