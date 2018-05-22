@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artist Page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'bikeradmin/css/bikertheme.css' %}" media="screen" title="no title" charset="utf-8">
@@ -70,15 +71,28 @@
         </div>
       </div>
       <div id="tourdates" style="width:100%; text-align:center;">
-        <div id="upcomingdates">Upcoming Shows</div>
         {% if tourdate %}
+        <div id="upcomingdates">Upcoming Shows</div>
         {% for t in tourdate %}
+        {% if t.is_future %}
         <div id="tourdaterow">
               <div class="tourdate">{{t.tourdatetime}}</div>
               <div class="tourvenue">{{t.tourvenue}}</div>
               <div class="tourcity">{{t.tourcity}}</div>
               <div class="buytickets"><a href="{{t.tourinfourl}}" style="text-decoration:none; color:black;">Tickets</a></div>
         </div>
+        {% endif %}
+        {% endfor %}
+        <div id="upcomingdates">Past Shows</div>
+        {% for t in tourdate %}
+        {% if t.is_past %}
+        <div id="tourdaterow">
+              <div class="tourdate">{{t.tourdatetime}}</div>
+              <div class="tourvenue">{{t.tourvenue}}</div>
+              <div class="tourcity">{{t.tourcity}}</div>
+              <div class="buytickets"><a href="{{t.tourinfourl}}" style="text-decoration:none; color:black;">Tickets</a></div>
+        </div>
+        {% endif %}
         {% endfor %}
         {% endif %}
     </div>

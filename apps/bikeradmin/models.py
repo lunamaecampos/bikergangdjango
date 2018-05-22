@@ -302,6 +302,12 @@ class TourDates(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = TourdatesManager()
+    def is_future(self):
+	from django.utils import timezone
+	return timezone.now() < self.tourdatetime
+    def is_past(self):
+	from django.utils import timezone
+	return timezone.now() > self.tourdatetime
 
 class FeaturedImage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
