@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Biker Gang Admin</title>
+    {% load static %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/style.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/dashboard.css' %}" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-bg-(1).ico' %}">
+  </head>
+  <body>
+    <div style="max-width:100%;height:auto;padding:.5em;background-color:#2D2D2D">
+      <div id="welcomeHeader" style="display:flex; justify-content:space-between;">
+        <span style="color:white; font-size:1.25em; font-weight:bold;margin:0.25em;">Welcome, {{request.session.username}}!</span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em;"><a style="color:white;text-decoration:none;" href="/logout">Logout</a></span>
+      </div>
+      <h1 style="color:white; margin:0.25em; font-family: 'Molle', cursive; color:#E54D4D;">Bikergang Admin Dashboard</h1>
+      <div id="menulinks">
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/dashboard">Dashboard</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/artistmanager">Artist Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/tourmanager">Tour Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/newsmanager">News Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/hofmanager">HoF Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em;"><a style="color:white;text-decoration:none;" href="/appmanager">App Manager</a></span>
+      </div>
+    </div>
+    {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message.message }}</p>
+    {% endfor %}
+
+    <div class="tab" style="margin-top:1em;">
+      <button class="tablinks" onclick="openEventName(event, 'tourdateform')" id="defaultOpen">Add Tourdates</button>
+      <button class="tablinks" onclick="openEventName(event, 'artistform')">Add Artists</button>
+      <button class="tablinks" onclick="openEventName(event, 'announcementform')">Add Announcements</button>
+      <button class="tablinks" onclick="openEventName(event, 'hofform')">Add Hall of Fame Photos</button>
+    </div>
+
+    <form id="tourdateform" class="tabcontent" action="/addtourdate/" enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+
+      <h2>Select Band and Enter New Tour Dates Here:</h2>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artist"> Choose an Artist: </label>
+        </div>
+        <div class="col-75">
+          <select name="select_artist">
+					<option></option>
+    					{% for a in artist %}
+    						<option value="{{a.id}}">{{a.artistname}}</option>
+    					{% endfor %}
+				  </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="tourdatetime"> Date & Time: </label>
+        </div>
+        <div class="col-75">
+          <input type="datetime-local" id="tourdatetime" name="tourdatetime" placeholder="MM/DD/YYYY, HH:MM PM">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="tourcity"> Tour City: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="tourcity" name="tourcity" placeholder="i.e. Dallas, Texas">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="tourinfourl"> Tour Venue: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="tourvenue" name="tourvenue" placeholder="i.e. Stubb's BBQ">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="tourinfourl"> Info Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="tourinfourl" name="tourinfourl" placeholder="full links ie: https://tm.com/tx/evnt/id=?w98sf">
+        </div>
+      </div>
+
+      <button>Post</button>
+    </form>
+
+
+    <form id="artistform" class="tabcontent" action="/addartist/" enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <h2>Add New Artist to the Roster:</h2>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistname"> Artist Name: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artistname" name="artistname" placeholder="enter artist name">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistbio"> Artist Bio: </label>
+        </div>
+        <div class="col-75">
+          <textarea id="artistbio" name="artistbio" placeholder="enter artist biography"></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistweb"> Website Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artistweb" name="artistweb" placeholder="i.e.: https://banesworld.org/">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistfb"> Facebook Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artistfb" name="artistfb" placeholder="i.e.: https://www.facebook.com/BANESW0RLD/">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistsc"> Soundcloud Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artistsc" name="artistsc" placeholder="i.e.: https://soundcloud.com/banes-world">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistbc"> Bandcamp Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artistbc" name="artistbc" placeholder="i.e.: https://banes-world.bandcamp.com/">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistinsta"> Instagram Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artistinsta" name="artistinsta" placeholder="i.e.: https://www.instagram.com/baneslanchard/">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artisttwitter"> Twitter Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artisttwitter" name="artisttwitter" placeholder="i.e.: https://twitter.com/baneswoorld">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistspot"> Spotify Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artistspot" name="artistspot" placeholder="i.e.: https://open.spotify.com/artist/5BCnLrqpwYtufR1bDWn0hG">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistyt"> Youtube Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artistyt" name="artistyt" placeholder="i.e.: https://www.youtube.com/channel/UCUV0_kcmeWSVUqE0wJKYP2A">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistplayer"> Soundcloud Player Url: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="artistplayer" name="artistplayer" placeholder="i.e.: https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/290691830&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistimg"> Profile Image Upload: </label>
+        </div>
+        <div class="col-75">
+          <input type="file" id="artistimg" name="artistimg">
+        </div>
+      </div>
+
+      <button>Post</button>
+    </form>
+
+
+    <form id="announcementform" class="tabcontent" action="/addnews/" enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+
+      <h2>Post a News Announcement Here:</h2>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="newsheadline"> News Headline: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="newsheadline" name="newsheadline" placeholder="i.e. 'New Tour Dates for *insert band name here*' or 'New Video Drop for our *band name*' etc.">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="newsstory"> News Story: </label>
+        </div>
+        <div class="col-75">
+          <textarea id="newsstory" name="newsstory" placeholder="enter details of the news your announcing"></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="newsimgcred"> Image Credit: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="newsimgcred" name="newsimgcred" placeholder="i.e.: 'Image Courtesy of AP'">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="newsimg"> News Image Upload: </label>
+        </div>
+        <div class="col-75">
+          <input type="file" id="newsimg" name="newsimg">
+        </div>
+      </div>
+	<button>Post</button>
+    </form>
+    <form id="hofform" class="tabcontent" action="/addimage/" enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+
+      <h2>Post a Hall Of Fame Photo Here:</h2>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="caption"> Caption: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="caption" name="caption" placeholder="Bane's World at Stubb's BBQ">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-25">
+          <label for="cred"> Image Credit: </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="cred" name="cred" placeholder="i.e.: 'Associated Press', 'Frank Mojica' ">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="image"> News Image Upload: </label>
+        </div>
+        <div class="col-75">
+          <input type="file" id="image" name="image">
+        </div>
+      </div>
+
+    <button>Post</button>
+  </form>
+  <div id="footer" style="width:100%; height:100px;"></div>
+  </body>
+  <script type="text/javascript" src="{% static 'bikeradmin/javascript/dashboard.js' %}"></script>
+</html>

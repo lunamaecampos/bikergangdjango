@@ -1,0 +1,64 @@
+<DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Biker Gang Admin</title>
+    {% load static %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/style.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/dashboard.css' %}" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-bg-(1).ico' %}">
+  </head>
+  <body>
+    <div style="max-width:100%;height:auto;padding:.5em;background-color:#2D2D2D">
+      <div id="welcomeHeader" style="display:flex; justify-content:space-between;">
+        <span style="color:white; font-size:1.25em; font-weight:bold;margin:0.25em;">Welcome, {{request.session.username}}!</span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em;"><a style="color:white;text-decoration:none;" href="/logout">Logout</a></span>
+      </div>
+      <h1 style="color:white; margin:0.25em; font-family: 'Molle', cursive; color:#E54D4D;">Bikergang Admin Dashboard</h1>
+      <div id="menulinks">
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/dashboard">Dashboard</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/artistmanager">Artist Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/tourmanager">Tour Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/newsmanager">News Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em; border-right:2px solid white;"><a style="color:white;text-decoration:none;" href="/hofmanager">HoF Manager</a></span>
+        <span style="font-size:1.25em;font-weight:bold; margin:0.25em; padding-right:.75em;"><a style="color:white;text-decoration:none;" href="/appmanager">App Manager</a></span>
+      </div>
+    </div>
+    {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message.message }}</p>
+    {% endfor %}
+    {% for a in applicant %}
+      <div id="application">
+        <h1 class="artistname" style="margin:auto; width:90%;">{{a.appname}}</h1>
+        <h2 class="citystae" style="margin:auto; margin-top:.5em; width:90%;">{{a.appcity}}, {{a.appstate}}</h2>
+        <h3 class="email" style="margin:auto; margin-top:.5em; width:90%;"><a href="mailto:{{a.appcontactemail}}">{{a.appcontactemail}}</a></h3>
+        <div class="artistabout" style="margin: auto; margin-top:.5em; width:90%;">{{a.appabout}}
+        </div>
+        <div class="sociallink" style="width:90%; margin:auto; margin-top:.5em;"><a href="{{a.appsociallink}}">Social</a></div>
+        <div class="sociallink" style="width:90%; margin:auto; margin-top:.5em;"><a href="{{a.appmusiclink}}">Music</a></div>
+        <form style="text-align:center; margin-top:.5em;" action="deleteapplication/{{a.id}}">
+          <button>Delete</button>
+        </form>
+      </div>
+    {% endfor %}
+
+    <div class="pagination" style="text-align:center; margin-top:1em;">
+      <span class="step-links">
+        {% if applicant.has_previous %}
+            <a href="?page={{applicant.previous_page_number}}">Prev</a>
+        {% endif %}
+        <span class="current">
+            Page {{applicant.number }} of {{ applicant.paginator.num_pages }}.
+        </span>
+        {% if applicant.has_next %}
+            <a href="?page={{applicant.next_page_number}}">Next</a>
+        {% endif %}
+      </span>
+    </div>
+    <div id="footer" style="width:100%; height:100px;"></div>
+  </body>
+  <script type="text/javascript" src="{% static 'bikeradmin/javascript/dashboard.js' %}"></script>
+</html>

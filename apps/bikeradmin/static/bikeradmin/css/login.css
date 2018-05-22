@@ -1,0 +1,66 @@
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #F3E9CE; 
+}
+h1{
+  color: white;
+}
+body {
+  background-color: white;
+}
+p {
+  color:red; padding-left: 40%;
+}
+form {
+  padding-left:8%;
+  padding-bottom:1%;
+}
+button {
+  background-color: lightgrey;
+  border: 1px solid #ccc;
+  color: white;
+}
+button:hover {
+  background-color: grey;
+}
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: grey;
+    margin-left:27%; margin-right: 27%;
+}
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 1em;
+    color: white;
+}
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: lightgrey;
+    color: mistyrose;
+}
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: darkgrey;
+}
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    margin-left:27%; margin-right: 27%;
+}
+#h1Wrapper {
+  width:100%;
+  padding-left:5%;
+  background-color:lightblue;
+}

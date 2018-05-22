@@ -1,0 +1,136 @@
+@media all {
+  body {
+    font-family: "Lato", sans-serif;
+    background-color: white;
+    margin: 0;
+  }
+  a {
+    text-decoration:none;
+  }
+  #menuicon {
+    display: none;
+  }
+  #menubar{
+    background-color:white;
+    border-bottom:black solid 1px;
+    padding-bottom:1em;
+    padding-top:1em;
+    margin-left:17.5em;
+    width:1400px;
+    display:inline-block;
+    position:fixed;
+  }
+
+  #contentwrapper{
+    width:840px;
+    padding-top:10em;
+    padding-left: 282px;
+    margin:auto;
+    opacity: 0;
+    /* background-color: red; */
+  }
+  #bikerlogo{
+    display:inline-block;
+    position:fixed;
+    height:200px;
+    width:auto;
+    background-color: white;
+  }
+  .navlinks {
+    color:#E54D4D;
+    font-family: Molle, cursive;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.75em;
+  }
+  .menuspan {
+    margin-left: 2em;
+  }
+  .scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+  .descthumb{
+    height:144px;
+    display:inline-block
+  }
+}
+  @media (max-width:1300px){
+    #menubar {
+      width: 1200px;
+      margin-left:13em;
+    }
+    #bikerlogo{
+      height:150px;
+    }
+    #contentwrapper{
+      width:640px;
+      padding-top:8em;
+      padding-left: 212px;
+      margin:auto;
+      opacity: 0;
+    }
+    .navlinks {
+      color:#E54D4D;
+      font-family: 'Molle', cursive;
+      font-size: 1.25em;
+    }
+  }
+  @media (max-width:1000px){
+    #menubar {
+      width:250px;
+      min-height: 100%;
+      padding-top: 0em;
+      top:3.6em;
+      border-right: 1px solid lightgrey;
+      position: fixed;
+      left: -550px;
+    }
+    #menuicon {
+      display: inline-block;
+      height: 24px;
+      margin:12px;
+    }
+    #mobilebar {
+      width: 100%;
+      padding-bottom: .3em;
+      border-bottom: 1px solid black;
+      position: fixed;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+    }
+    #filler{
+      height: 48px;
+      width: 48px;
+      display: inline-block;
+    }
+    #bikerlogo{
+      height:48px;
+      position: relative;
+      margin: auto;
+    }
+    #contentwrapper{
+      padding-top: 6em;
+      width:90%;
+      top:100px;
+      padding-left: 0px;
+      margin:auto;
+      opacity: 0;
+      /* position: relative; */
+    }
+    .menuspan{
+      display: block;
+      margin-left: 1em;
+      padding-bottom: 1em;
+      padding-top: 1em;
+      padding-left: 2em;
+      border-bottom: 1px solid lightgrey;
+    }
+    .navlinks {
+      color:#E54D4D;
+      font-family: 'Molle', cursive;
+      font-size: 1.25em;
+    }
+  }

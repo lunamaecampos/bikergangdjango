@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biker Gang Booking</title>
+      {% load static %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/landing.css' %}" media="screen" title="no title" charset="utf-8">
+      {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'bikeradmin/javascript/landing.js' %}"></script>
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-bg-(1).ico' %}">
+  </head>
+  <body>
+      <div id="landingwrapper">
+        <div class="imagecolumns">
+          <div id="hero1" class="imagehero" style="transform:rotate(15deg);">
+            <a href="/roster"><img class="navicon" src="{% static 'bikeradmin/images/icons/artist-roster-icon.png' %}"></a>
+            <div class="centeredtext" style="top: 19%;left: 37%;transform: rotate(-52deg) translate(-50%, -50%);">artists</div>
+          </div>
+          <div id="hero2" class="imagehero">
+            <a href="/tourdates"><img class="navicon" src="{% static 'bikeradmin/images/icons/tour-date-icon.png' %}"></a>
+            <div class="centeredtext" style="font-size:.75em; position: absolute;top: 18%;left: 34%;transform: rotate(-25deg) translate(-50%, -50%);">tour</div>
+            <div class="centeredtext" style="font-size:.75em; position: absolute;top: 15%;left: 60%;transform: rotate(-5deg) translate(-50%, -50%);">dates</div>
+          </div>
+          <div id="hero3" class="imagehero">
+            <a href="/HoF"><img class="navicon" src="{% static 'bikeradmin/images/icons/hall-of-fame.png' %}"></a>
+            <div class="centeredtext" style="font-size:.75em; position: absolute;top:10%;left: 50%;transform: rotate(-10deg) translate(-50%, -50%);">from the</div>
+            <div class="centeredtext" style="font-size:.75em; position: absolute;top: 40%;left: 55%;transform: rotate(90deg) translate(-50%, -50%);">vault</div>
+          </div>
+        </div>
+
+        <div id="middlecolumn">
+          <a href="/about"><img id="bikerlogo" style="width:400px;height:auto; display:inline-block; margin-top:50%; opacity:0;"src="{% static 'bikeradmin/images/icons/BikerGang_Black.png' %}"></a>
+          <div style="width:300px;margin:auto; margin-top:30%; display:inline-block;">
+            <a href="https://www.facebook.com/bikergangbooking/"><img class="socialicon" src="{% static 'bikeradmin/images/icons/facebook.png' %}"></a>
+            <a href="https://www.instagram.com/bikergangbooking/"><img class="socialicon" src="{% static 'bikeradmin/images/icons/instagram.png' %}"></a>
+            <a href="https://twitter.com/bikergangllc/"><img class="socialicon" src="{% static 'bikeradmin/images/icons/twitter.png' %}"></a>
+          </div>
+        </div>
+        <div class="imagecolumns2">
+          <div id="hero4" class="imagehero2" >
+            <a href="/news"><img class="navicon" src="{% static 'bikeradmin/images/icons/news-icon.png' %}"></a>
+            <div class="centeredtext" style="font-size:.7em; top: 8%;left: 37%;transform: rotate(-35deg) translate(-50%, -50%);">announcements</div>
+          </div>
+          <div id="hero5" class="imagehero2">
+            <a href="/contact"><img class="navicon" src="{% static 'bikeradmin/images/icons/contactus.png' %}"></a>
+            <div class="centeredtext" style="font-size:.75em; top: 12%;left: 50%;transform: translate(-50%, -50%);">contact</div>
+          </div>
+          <div id="hero6" class="imagehero2">
+            <a href="/apply"><img class="navicon" src="{% static 'bikeradmin/images/icons/apply.png' %}"></a>
+            <div class="centeredtext" style="font-size:.7em; top: 27%;left: 37%;transform: rotate(-12deg) translate(-50%, -50%);">join</div>
+            <div class="centeredtext" style="font-size:.5em; top: 31%;left: 52%;transform: translate(-50%, -50%);">the</div>
+            <div class="centeredtext" style="font-size:.7em; top: 30%;left: 70%;transform: rotate(10deg) translate(-50%, -50%);">team</div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>

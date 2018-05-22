@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Biker Gang</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/bikertheme.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/about.css' %}" media="screen" title="no title" charset="utf-8">
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'bikeradmin/javascript/bikertheme.js' %}"></script>
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-bg-(1).ico' %}">
+  </head>
+  <body>
+    <div id="mobilebar">
+      <img id= "menuicon" src="{% static 'bikeradmin/images/icons/menu.png'%}">
+      <a href="/"><img id="bikerlogo" src="{% static 'bikeradmin/images/icons/BikerGang_Black.png' %}"></a>
+      <div id="filler"></div>
+    </div>
+    <div id="menubar">
+      <div>
+        <span class="menuspan"><a class="navlinks" href="/roster">Artists</a></span>
+        <span class="menuspan"><a class="navlinks" href="/tourdates">Shows</a></span>
+        <span class="menuspan"><a class="navlinks" href="/HoF">From The Vault</a></span>
+        <span class="menuspan"><a class="navlinks" href="/apply">Apply</a></span>
+        <span class="menuspan"><a class="navlinks" href="/news">News</a></span>
+        <span class="menuspan"><a class="navlinks" href="/contact">Contact Us</a></span>
+	<span class="menuspan"><a class="navlinks" href="/about" >About</a></span>
+      </div>
+    </div>
+    <div id="contentwrapper">
+      <div id="title">About Us</div>
+      ϟ A personal talent agency representing artists across the United States.<br>
+      ϟ Doubling as a Talent Buyer in Dallas, Texas and surrounding areas.<br>
+      ϟ DIY OR DIE<br>
+      ԅ( ˘ω˘ԅ)<br>
+      <a href="http://facebook.com/bikergangbooking"><img class="socialicon" src="{% static 'bikeradmin/images/icons/facebook.png' %}"></a>
+      <a href="http://instagram.com/bikergangbooking"><img class="socialicon" src="{% static 'bikeradmin/images/icons/instagram.png' %}"></a>
+      <a href="http://twitter.com/bikergangllc"><img class="socialicon" src="{% static 'bikeradmin/images/icons/twitter.png' %}"></a>
+      <div style="margin-top:1em;">Talent Agent/Buyer/Manager: Max Cronen </div>
+      <div style="margin-top:1em;">Illustration and Design by: <a href="http://smallanxieties.com">Cynthia Cabrales</a></div>
+      <div style="margin-top:1em;">Website Developed by: <a href="http://lunacampos.com">Luna Campos</a></div>
+    </div>
+  </body>
+</html>

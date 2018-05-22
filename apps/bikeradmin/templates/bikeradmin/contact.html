@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/bikertheme.css' %}" media="screen" title="no title" charset="utf-8">
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'bikeradmin/javascript/bikertheme.js' %}"></script>
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-bg-(1).ico' %}">
+  </head>
+  <body>
+    <div id="mobilebar">
+      <img id= "menuicon" src="{% static 'bikeradmin/images/icons/menu.png'%}">
+      <a href="/"><img id="bikerlogo" src="{% static 'bikeradmin/images/icons/BikerGang_Black.png' %}"></a>
+      <div id="filler"></div>
+    </div>
+    <div id="menubar">
+      <div>
+        <span class="menuspan"><a class="navlinks" href="/roster">Artists</a></span>
+        <span class="menuspan"><a class="navlinks" href="/tourdates">Shows</a></span>
+        <span class="menuspan"><a class="navlinks" href="/HoF">From The Vault</a></span>
+        <span class="menuspan"><a class="navlinks" href="/apply">Apply</a></span>
+        <span class="menuspan"><a class="navlinks" href="/news">News</a></span>
+        <span class="menuspan"><a class="navlinks" href="/contact">Contact Us</a></span>
+	<span class="menuspan"><a class="navlinks" href="/about" >About</a></span>
+      </div>
+    </div>
+    <div id="contentwrapper">
+      <div style="font-size:4em; font-weight:bold; margin-bottom:1em;">Contact Us</div>
+      <div>For Artist Bookings/Press/Inquiries, please send email to:</div>
+      <div style="margin-top:1em;"><a href="mailto:max@bikergangbooking.com">max@bikergangbooking.com</a></div>
+      <div style="margin-top:2em;">For Artist Applications, please use the <a href="/apply">Apply</a> link</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall of Fame</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://toert.github.io/Isolated-Bootstrap/versions/3.3.7/iso_bootstrap3.3.7min.css">
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/bikertheme.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/hof.css' %}" media="screen" title="no title" charset="utf-8">
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'bikeradmin/javascript/bikertheme.js' %}"></script>
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-bg-(1).ico' %}">
+  </head>
+  <body>
+    <div id="mobilebar">
+      <img id= "menuicon" src="{% static 'bikeradmin/images/icons/menu.png'%}">
+      <a href="/"><img id="bikerlogo" src="{% static 'bikeradmin/images/icons/BikerGang_Black.png' %}"></a>
+      <div id="filler"></div>
+    </div>
+    <div id="menubar">
+      <div>
+        <span class="menuspan"><a class="navlinks" href="/roster">Artists</a></span>
+        <span class="menuspan"><a class="navlinks" href="/tourdates">Shows</a></span>
+        <span class="menuspan"><a class="navlinks" href="/HoF">From The Vault</a></span>
+        <span class="menuspan"><a class="navlinks" href="/apply">Apply</a></span>
+        <span class="menuspan"><a class="navlinks" href="/news">News</a></span>
+        <span class="menuspan"><a class="navlinks" href="/contact">Contact Us</a></span>
+	<span class="menuspan"><a class="navlinks" href="/about" >About</a></span>
+      </div>
+    </div>
+    <div id="contentwrapper">
+      <div class="hoftitle">From The Vault</div>
+      <div class="scrolling-wrapper">
+        {% for i in hofphoto %}
+        <img src="{{i.image.url}}" class="descthumb" alt="" onclick="">
+        {% endfor %}
+      </div>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+        {% for h in hofphoto %}
+        <div class="mySlides">
+          <div class="numbertext">{{h.caption}}
+             <div style="font-size:.5em;">Image Courtesey of {{h.credit}}</div>
+           </div>
+          <a href="{{h.img.url}}"><img src="{{h.image.url}}"></a>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div id="footer" style="width:100%; height:100px;"></div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+  <script type="text/javascript" src="{% static 'bikeradmin/javascript/hof.js' %}"></script>
+</html>

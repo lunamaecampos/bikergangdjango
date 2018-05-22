@@ -1,0 +1,199 @@
+@media all {
+  body{
+    background-color: #F5F5F5;
+  }
+  #apply{
+    font-size: 4em;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  .success{
+    color:green;
+    font-weight: bold;
+    font-size: 2em;
+  }
+  .error{
+      color:red;
+      font-weight: bold;
+      font-size: 1.5em;
+  }
+  #tourdateform{
+    margin: auto;
+    width:700px;
+    padding: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #F3E9CE;
+    text-align: center;
+  }
+  #artistform{
+    margin: auto;
+    width:700px;
+    padding: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #A7E163;
+    text-align: center;
+  }
+  #announcementform{
+    margin: auto;
+    width:700px;
+    padding: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #74D2E7;
+    text-align: center;
+  }
+  #hofform{
+    margin: auto;
+    width:700px;
+    padding: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #ED9C66;
+    text-align: center;
+  }
+  #deleteform{
+    margin: auto;
+    width:700px;
+    padding: 20px;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+    background-color: #E06C75;
+    text-align: center;
+  }
+  #application{
+    background-color:white;
+    width:680px;
+    margin:auto;
+    margin-top:1em;
+  }
+  .selectform{
+    margin: auto;
+    margin-top: 1em;
+    width:680px;
+    padding: 20px;
+    border-radius: 2px;
+    background-color: white;
+    text-align: center;
+  }
+
+  input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+  input[type=datetime-local], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  /* Style the submit button */
+  input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  .col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  button {
+    margin-top: 1em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-size: 1em;
+    background-color: #2D2D2D;
+    border: none;
+    font-weight: bold;
+    color: white;
+    width: auto;
+  }
+  .socialicon {
+    width:44px;
+    height:44px;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin:auto;
+  }
+
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 4px;
+      text-align: center;
+  }
+
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #tourdateform{
+    margin: auto;
+    width:90%;
+  }
+  #artistform{
+    margin: auto;
+    width:90%;
+  }
+  #announcementform{
+    margin: auto;
+    width:90%;
+  }
+  #hofform{
+    margin: auto;
+    width:90%;
+  }
+  .col-25, .col-75, button {
+    width: 100%;
+    margin-top: 1em;
+  }
+  #apply{
+    font-size:1.75em;
+  }
+  div.tab {
+      width:90%;
+  }
+  .selectform{
+    width:90%;
+  }
+  #deleteform{
+    width:90%;
+  }
+  #application{
+    width: 90%;
+  }
+}

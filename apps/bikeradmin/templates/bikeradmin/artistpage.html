@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/bikertheme.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bikeradmin/css/artistpage.css' %}" media="screen" title="no title" charset="utf-8">
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico|Satisfy" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'bikeradmin/javascript/bikertheme.js' %}"></script>
+    <link rel="icon" href="{% static 'bikeradmin/images/icons/favicon-bg-(1).ico' %}">
+  </head>
+  <body>
+    <div id="mobilebar">
+      <img id= "menuicon" src="{% static 'bikeradmin/images/icons/menu.png'%}">
+      <a href="/"><img id="bikerlogo" src="{% static 'bikeradmin/images/icons/BikerGang_Black.png' %}"></a>
+      <div id="filler"></div>
+    </div>
+    <div id="menubar">
+      <div>
+        <span class="menuspan"><a class="navlinks" href="/roster">Artists</a></span>
+        <span class="menuspan"><a class="navlinks" href="/tourdates">Shows</a></span>
+        <span class="menuspan"><a class="navlinks" href="/HoF">From The Vault</a></span>
+        <span class="menuspan"><a class="navlinks" href="/apply">Apply</a></span>
+        <span class="menuspan"><a class="navlinks" href="/news">News</a></span>
+        <span class="menuspan"><a class="navlinks" href="/contact">Contact Us</a></span>
+     	<span class="menuspan"><a class="navlinks" href="/about" >About</a></span>
+      </div>
+    </div>
+    <div id="contentwrapper">
+      {% if artist %}
+      <div style="width:50% background-color:blue; display:inline-block; text-align:center;">
+        <div id="artistname">{{artist.artistname}}</div>
+        <img id="artistimage" src="{{artist.profileImage.url}}" data-color="violet">
+        <div style="display:flex; justify-content:space-between;">
+          {% if artist.websiteLink %}
+          <a href="{{artist.websiteLink}}"><img class="socialicon" src="{% static 'bikeradmin/images/social/web.png' %}"></a>
+          {% endif %}
+          {% if artist.twitterLink %}
+          <a href="{{artist.twitterLink}}"><img class="socialicon" src="{% static 'bikeradmin/images/social/twitter.png' %}"></a>
+          {% endif %}
+          {% if artist.spotLink %}
+          <a href="{{artist.spotLink}}"><img class="socialicon" src="{% static 'bikeradmin/images/social/spotify.png' %}"></a>
+          {% endif %}
+          {% if artist.soundcloudLink %}
+          <a href="{{artist.soundcloudLink}}"><img class="socialicon" src="{% static 'bikeradmin/images/social/soundcloud.png' %}"></a>
+          {% endif %}
+          {% if artist.bandcampLink %}
+          <a href="{{artist.bandcampLink}}"><img class="socialicon" src="{% static 'bikeradmin/images/social/bandcamp.png' %}"></a>
+          {% endif %}
+          {% if artist.instagramLink %}
+          <a href="{{artist.instagramLink}}"><img class="socialicon" src="{% static 'bikeradmin/images/social/instagram.png' %}"></a>
+          {% endif %}
+          {% if artist.youtubeLink %}
+          <a href="{{artist.youtubeLink}}"><img class="socialicon" src="{% static 'bikeradmin/images/social/youtube.png' %}"></a>
+          {% endif %}
+          {% if artist.facebookLink %}
+          <a href="{{artist.facebookLink}}"><img class="socialicon" src="{% static 'bikeradmin/images/social/facebook.png' %}"></a>
+          {% endif %}
+        </div>
+        {% if artist.playersoundcloudLink %}
+        <iframe style="display:block; margin-top:1em;" scrolling="no" frameborder="no" src="{{artist.playersoundcloudLink}}"></iframe>
+        {% endif %}
+      </div>
+      <div id="artistbio">
+        <div style="margin-left:1em;">
+          {{artist.artistbio}}
+        </div>
+      </div>
+      <div id="tourdates" style="width:100%; text-align:center;">
+        {% if tourdate %}
+        <div id="upcomingdates">Upcoming Shows</div>
+        {% for t in tourdate %}
+        {% if t.is_future %}
+        <div id="tourdaterow">
+              <div class="tourdate">{{t.tourdatetime}}</div>
+              <div class="tourvenue">{{t.tourvenue}}</div>
+              <div class="tourcity">{{t.tourcity}}</div>
+              <div class="buytickets"><a href="{{t.tourinfourl}}" style="text-decoration:none; color:black;">Tickets</a></div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div id="upcomingdates">Past Shows</div>
+        {% for t in tourdate %}
+        {% if t.is_past %}
+        <div id="tourdaterow">
+              <div class="tourdate">{{t.tourdatetime}}</div>
+              <div class="tourvenue">{{t.tourvenue}}</div>
+              <div class="tourcity">{{t.tourcity}}</div>
+              <div class="buytickets"><a href="{{t.tourinfourl}}" style="text-decoration:none; color:black;">Tickets</a></div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div id="footer" style="width:100%; height:100px;"></div>
+    {% endif %}
+  </body>
+</html>
