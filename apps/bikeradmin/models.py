@@ -99,7 +99,7 @@ class ArtistManager(models.Manager):
             if error_msgs:
                 return {'errors':error_msgs}
             else:
-                artist = ArtistProfile(artistname=postData['artistname'], artisturlname=slugify(postData['artistname']), artistbio=postData['artistbio'], websiteLink=postData['artistweb'], facebookLink=postData['artistfb'], soundcloudLink=postData['artistsc'], bandcampLink=postData['artistbc'], instagramLink=postData['artistinsta'], twitterLink=postData['artisttwitter'], spotLink=postData['artistspot'], youtubeLink=postData['artistyt'], playersoundcloudLink=postData['artistplayer'], currentArtist=True, profileImage=fileData['artistimg'])
+                artist = ArtistProfile(artistname=postData['artistname'], artisturlname=slugify(postData['artistname']), artistbio=postData['artistbio'], websiteLink=postData['artistweb'], facebookLink=postData['artistfb'], soundcloudLink=postData['artistsc'], bandcampLink=postData['artistbc'], instagramLink=postData['artistinsta'], twitterLink=postData['artisttwitter'], spotLink=postData['artistspot'], youtubeLink=postData['artistyt'], playersoundcloudLink=postData['artistplayer'], artistmgmtemail=postData['artistmgmtemail'], artistavail=postData['artistavail'], artistsituation=postData['artistsituation'], currentArtist=True, profileImage=fileData['artistimg'])
                 artist.save()
                 success_msg.append("You've successfully added this Artist in the Database!")
                 return {'artist':artist.id, 'success':success_msg}
@@ -114,7 +114,7 @@ class ArtistManager(models.Manager):
             return {'errors':error_msgs}
         else:
             if filepath == False:
-                artist = ArtistProfile.objects.filter(id=id).update(artistname=postData['artistname'], artisturlname=slugify(postData['artistname']), artistbio=postData['artistbio'], websiteLink=postData['artistweb'], facebookLink=postData['artistfb'], soundcloudLink=postData['artistsc'], bandcampLink=postData['artistbc'], instagramLink=postData['artistinsta'], twitterLink=postData['artisttwitter'], spotLink=postData['artistspot'], youtubeLink=postData['artistyt'], currentArtist=postData['artistbool'], playersoundcloudLink=postData['artistplayer'])
+                artist = ArtistProfile.objects.filter(id=id).update(artistname=postData['artistname'], artisturlname=slugify(postData['artistname']), artistbio=postData['artistbio'], websiteLink=postData['artistweb'], facebookLink=postData['artistfb'], soundcloudLink=postData['artistsc'], bandcampLink=postData['artistbc'], instagramLink=postData['artistinsta'], twitterLink=postData['artisttwitter'], spotLink=postData['artistspot'], youtubeLink=postData['artistyt'], artistmgmtemail=postData['artistmgmtemail'], artistavail=postData['artistavail'], artistsituation=postData['artistsituation'], currentArtist=postData['artistbool'], playersoundcloudLink=postData['artistplayer'])
                 success_msg.append("You've successfully updated this Artist Profile!")
                 return {'artist':artist, 'success':success_msg}
             else:
@@ -137,6 +137,9 @@ class ArtistManager(models.Manager):
                     artist.spotLink=postData['artistspot']
                     artist.youtubeLink=postData['artistyt']
                     artist.playersoundcloudLink=postData['artistplayer']
+                    artist.mgmtemail=postData['artistmgmtemail']
+                    artist.artistavail=postData['artistavail']
+                    artist.artistsituation=postData['artistsituation'],
 		    artist.currentArtist=postData['artistbool']
                     artist.profileImage.delete()
                     artist.profileImage=fileData['artistimg']
@@ -291,6 +294,9 @@ class ArtistProfile(models.Model):
     spotLink = models.CharField(max_length=255)
     youtubeLink = models.CharField(max_length=255)
     playersoundcloudLink = models.CharField(max_length=255)
+    artistmgmtemail = models.CharField(max_length=255)
+    artistavail = models.CharField(max_length=255)
+    artistsituation = models.CharField(max_length=255)
     profileImage = models.ImageField()
     currentArtist = models.BooleanField()
     objects = ArtistManager()

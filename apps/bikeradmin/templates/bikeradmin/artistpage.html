@@ -35,6 +35,9 @@
       <div style="width:50% background-color:blue; display:inline-block; text-align:center;">
         <div id="artistname">{{artist.artistname}}</div>
         <img id="artistimage" src="{{artist.profileImage.url}}" data-color="violet">
+        {% if artist.artistmgmtemail%}
+        <div style="font-size: 1em; margin-bottom:1em; font-weight:bold; ">Booking: <a style="color:black;" href="mailto:{{artist.artistmgmtemail}}">{{artist.artistmgmtemail}}</a> </div>
+        {% endif %}
         <div style="display:flex; justify-content:space-between;">
           {% if artist.websiteLink %}
           <a href="{{artist.websiteLink}}"><img class="socialicon" src="{% static 'bikeradmin/images/social/web.png' %}"></a>
@@ -66,6 +69,18 @@
         {% endif %}
       </div>
       <div id="artistbio">
+        {% if artist.artistavail %}
+        <div style="margin-left:1em; margin-bottom:1em;">
+          <span style="font-weight:bold;">Availability: </span>
+          <span>{{artist.artistavail}}</span>
+        </div>
+        {% endif %}
+        {% if artist.artistsituation %}
+        <div style="margin-left:1em; margin-bottom:1em;">
+          <span style="font-weight:bold;">Situation: </span>
+          <span>{{artist.artistsituation}}</span>
+        </div>
+        {% endif %}
         <div style="margin-left:1em;">
           {{artist.artistbio}}
         </div>
