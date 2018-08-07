@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^tourdates$', views.tourdates),
     url(r'^tourdates/$', views.tourdates),
     url(r'^roster$', views.roster),
-    url(r'^news', views.news),
+    url(r'^news$', views.news),
     url(r'^HoF$', views.halloffame),
     url(r'^contact$', views.contact),
     url(r'^apply$', views.apply),
