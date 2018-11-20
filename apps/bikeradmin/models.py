@@ -99,22 +99,48 @@ class ArtistManager(models.Manager):
             if error_msgs:
                 return {'errors':error_msgs}
             else:
-                artist = ArtistProfile(artistname=postData['artistname'], artisturlname=slugify(postData['artistname']), artistbio=postData['artistbio'], websiteLink=postData['artistweb'], facebookLink=postData['artistfb'], soundcloudLink=postData['artistsc'], bandcampLink=postData['artistbc'], instagramLink=postData['artistinsta'], twitterLink=postData['artisttwitter'], spotLink=postData['artistspot'], youtubeLink=postData['artistyt'], playersoundcloudLink=postData['artistplayer'], artistmgmtemail=postData['artistmgmtemail'], artistavail=postData['artistavail'], artistsituation=postData['artistsituation'], currentArtist=True, profileImage=fileData['artistimg'])
+                allArtists = ArtistProfile.objects.order_by('artistPriority')
+                priorityCount = 1
+                for loopartist in allArtists:
+                    priorityCount = priorityCount + 1
+                artist = ArtistProfile(artistname=postData['artistname'], artisturlname=slugify(postData['artistname']), artistbio=postData['artistbio'], websiteLink=postData['artistweb'], facebookLink=postData['artistfb'], soundcloudLink=postData['artistsc'], bandcampLink=postData['artistbc'], instagramLink=postData['artistinsta'], twitterLink=postData['artisttwitter'], spotLink=postData['artistspot'], youtubeLink=postData['artistyt'], playersoundcloudLink=postData['artistplayer'], artistmgmtemail=postData['artistmgmtemail'], artistavail=postData['artistavail'], artistsituation=postData['artistsituation'], artistPriority=priorityCount, currentArtist=True, profileImage=fileData['artistimg'])
                 artist.save()
                 success_msg.append("You've successfully added this Artist in the Database!")
                 return {'artist':artist.id, 'success':success_msg}
     def updateArtist(self, postData, fileData, id, filepath):
         error_msgs = []
         success_msg = []
+        priorityNumber = int(postData['priorityNumber'])
         if len(postData['artistname']) < 1:
             error_msgs.append("Please make sure you've entered Artist Name")
         if len(postData['artistbio']) < 1:
             error_msgs.append("Please make sure you've entered Artist Bio")
+        if priorityNumber == 0:
+            error_msgs.append("Please choose a number greater than Zero")
         if error_msgs:
             return {'errors':error_msgs}
         else:
             if filepath == False:
                 artist = ArtistProfile.objects.filter(id=id).update(artistname=postData['artistname'], artisturlname=slugify(postData['artistname']), artistbio=postData['artistbio'], websiteLink=postData['artistweb'], facebookLink=postData['artistfb'], soundcloudLink=postData['artistsc'], bandcampLink=postData['artistbc'], instagramLink=postData['artistinsta'], twitterLink=postData['artisttwitter'], spotLink=postData['artistspot'], youtubeLink=postData['artistyt'], artistmgmtemail=postData['artistmgmtemail'], artistavail=postData['artistavail'], artistsituation=postData['artistsituation'], currentArtist=postData['artistbool'], playersoundcloudLink=postData['artistplayer'])
+                # priorityNumber = int(postData['priorityNumber'])
+                selectedArtist = ArtistProfile.objects.get(id=id)
+                allArtists = ArtistProfile.objects.order_by('artistPriority')
+                for loopartist in allArtists:
+                    if priorityNumber <= selectedArtist.artistPriority:
+                        print loopartist.artistname + " " + str(loopartist.artistPriority)
+                        if loopartist.artistPriority > selectedArtist.artistPriority:
+                            print "wont update this artist either"
+                        elif loopartist.artistPriority >= priorityNumber:
+                            loopartist.artistPriority = loopartist.artistPriority + 1
+                            loopartist.save()
+                            print "**" + str(selectedArtist.artistPriority) + " **"
+                    else:
+                        print loopartist.artistname + " " + str(loopartist.artistPriority)
+                        if loopartist.artistPriority > selectedArtist.artistPriority and loopartist.artistPriority <= priorityNumber:
+                            loopartist.artistPriority = loopartist.artistPriority - 1
+                            loopartist.save()
+                selectedArtist.artistPriority = priorityNumber
+                selectedArtist.save()
                 success_msg.append("You've successfully updated this Artist Profile!")
                 return {'artist':artist, 'success':success_msg}
             else:
@@ -144,8 +170,40 @@ class ArtistManager(models.Manager):
                     artist.profileImage.delete()
                     artist.profileImage=fileData['artistimg']
                     artist.save()
+                    selectedArtist = ArtistProfile.objects.get(id=id)
+                    allArtists = ArtistProfile.objects.order_by('artistPriority')
+                    for loopartist in allArtists:
+                        if priorityNumber <= selectedArtist.artistPriority:
+                            print loopartist.artistname + " " + str(loopartist.artistPriority)
+                            if loopartist.artistPriority > selectedArtist.artistPriority:
+                                print "wont update this artist either"
+                            elif loopartist.artistPriority >= priorityNumber:
+                                loopartist.artistPriority = loopartist.artistPriority + 1
+                                loopartist.save()
+                                print "**" + str(selectedArtist.artistPriority) + " **"
+                        else:
+                            print loopartist.artistname + " " + str(loopartist.artistPriority)
+                            if loopartist.artistPriority > selectedArtist.artistPriority and loopartist.artistPriority <= priorityNumber:
+                                loopartist.artistPriority = loopartist.artistPriority - 1
+                                loopartist.save()
+                    selectedArtist.artistPriority = priorityNumber
+                    selectedArtist.save()
                     success_msg.append("You've successfully updated this Artist Profile!")
                     return {'artist':artist, 'success':success_msg}
+    # def setArtistPriority(self, id, postdata):
+    #     priorityNumber = postData['priorityNumber']
+    #     selectedArtist = ArtistProfile.objects.get(id=id)
+    #     allArtists = ArtistProfile.objects.order_by('artistPriority')
+    #     for artist in allArtists:
+    #         if artist.artistPriority == priorityNumber:
+    #             artist.artistPriority = artist.artistPriority + 1
+    #             artist.save()
+    #             selectedArtist.artistPriority = priorityNumber
+    #             selectedArtist.save()
+    #         if artist.artistPriority + 2 > priorityNumber:
+    #             artist.artistPriority = artist.artistPriority + 1
+    #             artist.save()
+
     def deleteArtist(self, id):
         artist = ArtistProfile.objects.get(id=id)
         artist.profileImage.delete()
@@ -170,6 +228,26 @@ class TourdatesManager(models.Manager):
             # artistname = artistid.artistname
             tourdateall = TourDates.objects.create(tourdatetime=postData['tourdatetime'], tourcity=postData['tourcity'], tourvenue=postData['tourvenue'], tourinfourl=postData['tourinfourl'], artist=artistid)
             success_msg.append("You've successfully added this Tour Date in the Database!")
+            return {'tourdateall':tourdateall.id, 'success':success_msg}
+    def updateTourdate(self, postData, id):
+        error_msgs = []
+        success_msg = []
+        if len(postData['tourcity']) < 1:
+            error_msgs.append("Please make sure you've entered Tour City")
+        if len(postData['tourvenue']) < 1:
+            error_msgs.append("Please make sure you've entered Tour Venu")
+        if len(postData['tourinfourl']) < 1:
+            error_msgs.append("Please make sure you've entered Ticket/Info Link")
+        if error_msgs:
+            return {'errors':error_msgs}
+        else:
+            tourdateall = TourDates.objects.get(id=id)
+            tourdateall.tourdatetime=postData['tourdatetime']
+            tourdateall.tourcity=postData['tourcity']
+            tourdateall.tourvenue=postData['tourvenue']
+            tourdateall.tourinfourl=postData['tourinfourl']
+            tourdateall.save()
+            success_msg.append("You've successfully updated this Tour Date in the Database!")
             return {'tourdateall':tourdateall.id, 'success':success_msg}
     def deleteTourdate(self, id):
         TourDates.objects.get(id=id).delete()
@@ -299,6 +377,7 @@ class ArtistProfile(models.Model):
     artistsituation = models.CharField(max_length=255)
     profileImage = models.ImageField()
     currentArtist = models.BooleanField()
+    artistPriority = models.IntegerField(default=1)
     objects = ArtistManager()
 
 class TourDates(models.Model):

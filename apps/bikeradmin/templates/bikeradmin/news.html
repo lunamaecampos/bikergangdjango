@@ -48,7 +48,9 @@
         </div>
         <div class="newsContent">
           <div>
+            {% autoescape off %}
             {{n.newsstory}}
+            {% endautoescape %}
           </div>
         </div>
         <div class="imageDiv">

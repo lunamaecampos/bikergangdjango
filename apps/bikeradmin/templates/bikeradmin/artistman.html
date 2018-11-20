@@ -38,7 +38,7 @@
       <select id="artist">
         <option></option>
         {% for a in artist %}
-        <option value="{{a.id}}" name="artistid">{{a.artistname}}</option>
+        <option value="{{a.id}}" name="artistid">{{a.artistPriority}} {{a.artistname}}</option>
         {% endfor %}
       </select>
       <button type="submit" value="submit">Select</button>
@@ -58,6 +58,15 @@
         </div>
         <div class="col-75">
           <input type="text" id="artistname" name="artistname" placeholder="enter artist name" value="{{theartist.artistname}}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="artistbio"> Artist Priority Number: </label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="artistpriority" name="priorityNumber" value="{{theartist.artistPriority}}">
         </div>
       </div>
 
@@ -185,9 +194,12 @@
           <label for="artistbool"> Current Artist: </label>
         </div>
         <div class="col-75">
-          {{a.currentArtist}}
           <input type="hidden" id="artistbool" value="False" name="artistbool">
-          <input type="checkbox" id="artistbool" name="artistbool" value="True">
+          {% if theartist.currentArtist is True %}
+          <input type="checkbox" id="artistbool" name="artistbool" value ="True" checked>
+          {% else %}
+          <input type="checkbox" id="artistbool" value="True" name="artistbool">
+          {% endif %}
         </div>
       </div>
 

@@ -46,6 +46,7 @@ urlpatterns = [
 
     #####These routes will edit######
     url(r'editartist/(?P<id>\d+)$', views.editArtist),
+    url(r'edittourdate/(?P<id>\d+)$', views.editTourdate),
     url(r'editnews/(?P<id>\d+)$', views.editAnnouncement),
 
     #####These routes will delete######

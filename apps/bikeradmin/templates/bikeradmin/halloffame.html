@@ -33,19 +33,19 @@
     </div>
     <div id="contentwrapper">
       <div class="hoftitle">From The Vault</div>
-      <div class="scrolling-wrapper">
+      <div style="text-align:center;">
         {% for i in hofphoto %}
         <img src="{{i.image.url}}" class="descthumb" alt="" onclick="">
         {% endfor %}
       </div>
-      <div id="myModal" class="modal">
+      <div id="myModal" style="display:none;position:fixed; text-align: center; background:rgba(0,0,0,0.8)" onclick="closeModal()" class="modal">
         <div class="modal-content">
         {% for h in hofphoto %}
         <div class="mySlides">
           <div class="numbertext">{{h.caption}}
              <div style="font-size:.5em;">Image Courtesey of {{h.credit}}</div>
            </div>
-          <a href="{{h.img.url}}"><img src="{{h.image.url}}"></a>
+          <a href="{{h.img.url}}"><img style="width:100%;max-width:800px;"src="{{h.image.url}}"></a>
         </div>
         {% endfor %}
         </div>

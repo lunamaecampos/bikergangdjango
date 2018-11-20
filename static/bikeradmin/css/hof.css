@@ -18,7 +18,6 @@
 
 /* Modal Content */
 .modal .modal-content {
-  /* position: relative; */
   margin: auto;
   padding: 0;
   background: rgba(0,0,0,0);
@@ -42,7 +41,7 @@
 }
 
 .modal .mySlides {
-  display: none;
+  position: sticky;
 }
 
 .modal .cursor {
@@ -102,7 +101,7 @@
 
 .modal .caption-container {
   text-align: center;
-  background-color: black;
+  /* background-color: black; */
   padding: 2px 16px;
   color: white;
 }

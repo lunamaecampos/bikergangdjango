@@ -51,15 +51,19 @@
         <th>Venue</th>
         <th>City, State</th>
         <th>Tix</th>
+        <th>Update</th>
         <th>Delete</th>
       </tr>
       {% for t in tourdate %}
       <tr>
+        <form action="/edittourdate/{{t.id}}" method="POST">
+          {% csrf_token %}
         <td>{{t.artist.artistname}}</td>
-        <td>{{t.tourdatetime}}</td>
-        <td>{{t.tourvenue}}</td>
-        <td>{{t.tourcity}}</td>
-        <td><a href="{{t.tourinfourl}}">Tix</a></td>
+        <td><input type="datetime-local" name="tourdatetime" value="{{ t.tourdatetime|date:"Y-m-d" }}T{{ t.tourdatetime|time:"H:i:s" }}"></td>
+        <td><input type="text" name="tourvenue" value="{{t.tourvenue}}"></td>
+        <td><input type="text" name="tourcity" value="{{t.tourcity}}"></td>
+        <td><input type="text" name="tourinfourl" value="{{t.tourinfourl}}"></td>
+        <td><button style="font-size:.75em;">Update</button></form></td>
         <td><form action="/deletetourdate/{{t.id}}"><button style="font-size:.75em;">Delete</button></form></td>
       </tr>
       {% endfor %}

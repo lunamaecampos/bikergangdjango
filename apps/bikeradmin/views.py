@@ -13,8 +13,8 @@ def logpage (request):
     return render(request, 'bikeradmin/login.html')
 
 def roster (request):
-    trueartist = ArtistProfile.objects.filter(currentArtist=True)
-    falseartist = ArtistProfile.objects.filter(currentArtist=False)
+    trueartist = ArtistProfile.objects.filter(currentArtist=True).order_by('artistPriority')
+    falseartist = ArtistProfile.objects.filter(currentArtist=False).order_by('artistPriority')
     return render(request, 'bikeradmin/roster.html', {'trueartist':trueartist, 'falseartist':falseartist})
 
 def tourdates (request):
@@ -71,7 +71,7 @@ def artist(request):
     return render(request, 'bikeradmin/artistpage.html')
 
 def artistman(request):
-    artist = ArtistProfile.objects.all()
+    artist = ArtistProfile.objects.order_by('artistPriority')
     return render(request, 'bikeradmin/artistman.html', {'artist': artist})
 
 ##### Management views for windows dashboard #######
@@ -102,7 +102,15 @@ def hofman(request):
 
 def tourman(request):
     artist = ArtistProfile.objects.all()
-    tour_list = TourDates.objects.all()
+    tour_list = TourDates.objects.order_by('tourdatetime')
+    # tour_list2 = []
+    # for t in tour_list:
+    #     print t.tourdatetime.isoformat()
+    #     tour_list2.append(t.tourdatetime.isoformat())
+
+    # for t in tour_list:
+    #     print t.tourdatetime.isoformat()
+    # tour_list2 = TourDates.iftourdate()
     paginator = Paginator(tour_list, 50) # Show 50 Tourdates per page
 
     page = request.GET.get('page')
@@ -118,7 +126,7 @@ def tourman(request):
 
 def tourArtistSelect(request, id):
     artist = ArtistProfile.objects.all()
-    tour_list = TourDates.objects.filter(artist=id)
+    tour_list = TourDates.objects.filter(artist=id).order_by('tourdatetime')
     paginator = Paginator(tour_list, 50) # Show 50 Tourdates per page
 
     page = request.GET.get('page')
@@ -167,11 +175,21 @@ def newsSelect(request, id):
     return render(request, 'bikeradmin/newsman.html', {'thenews':thenews, 'news':news})
 
 def selectArtist(request, id):
-    artist = ArtistProfile.objects.all()
+    artist = ArtistProfile.objects.order_by('artistPriority')
     theartist = ArtistProfile.objects.get(pk=id)
     context = {'theartist':theartist, 'artist':artist}
     return render(request, 'bikeradmin/artistman.html', context)
-
+def editTourdate(request, id):
+    if request.method=="POST":
+        tourdateall = TourDates.objects.updateTourdate(request.POST, id)
+        if 'errors' in tourdateall:
+            for error in tourdateall['errors']:
+                messages.error(request, error)
+            return redirect('/tourmanager')
+        if 'tourdateall' in tourdateall:
+            for success in tourdateall['success']:
+                messages.success(request, success)
+            return redirect('/tourmanager')
 def editArtist(request, id):
     if request.method=="POST":
         filepath = request.FILES.get('artistimg', False)
