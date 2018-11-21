@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 't^)q6_1rg6+ag&tr8s8vo0&_j%ra&+@7^n@w8l)6kavrmm2+bb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['54.214.153.120', 'bikergangbooking.com', 'www.bikergangbooking.com', '*']
+ALLOWED_HOSTS = ['54.214.153.120', 'bikergangbooking.com', 'www.bikergangbooking.com']
 
 
 # Application definition
